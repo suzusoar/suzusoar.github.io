@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LXIZAXI</title>
+    <!-- VT323 Google Font (Retro CRT Terminal font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glow-color: #33ff33;
+            --bg-color: #050a05;
+            --text-color: #33ff33;
+            --dim-color: #116611;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            text-shadow: 0 0 4px rgba(51, 255, 51, 0.55);
+        }
+
+        /* Scanlines and CRT Flicker effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* CRT Vignette & Screen curve overlay */
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.75) 100%);
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        main {
+            width: 100%;
+            max-width: 640px;
+            padding: 20px;
+            z-index: 2;
+            animation: crt-warmup 0.5s ease-out;
+        }
+
+        .terminal-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ascii-art {
+            font-family: monospace;
+            font-size: 0.8rem;
+            line-height: 1.1;
+            white-space: pre;
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto 1.5rem auto;
+            color: var(--text-color);
+        }
+
+        .sys-info {
+            border-bottom: 2px dashed var(--text-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .sys-info p {
+            margin-bottom: 0.2rem;
+        }
+
+        .menu-box {
+            border: 2px solid var(--text-color);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: rgba(0, 15, 0, 0.3);
+        }
+
+        .menu-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.1s ease;
+            position: relative;
+        }
+
+        .menu-item a:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-shadow: none;
+            padding: 0 4px;
+        }
+
+        .dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted var(--dim-color);
+            margin: 0 10px 5px 10px;
+        }
+
+        .terminal-footer {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 2px dashed var(--text-color);
+            padding-top: 1rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 20px;
+            background-color: var(--text-color);
+            animation: blink 0.8s infinite steps(2, start);
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        /* Access Counter */
+        .counter {
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        @keyframes blink {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes crt-warmup {
+            0% {
+                transform: scaleY(0.01) scaleX(0);
+                filter: brightness(3);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scaleY(0.01) scaleX(1);
+                filter: brightness(2);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scaleY(1) scaleX(1);
+                filter: brightness(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="terminal-header">
+            <pre class="ascii-art">
+ _                _                   _ 
+| |              (_)                 (_)
+| | __  __  __ _  _  _____  __ _ __  __ 
+| | \ \/ / / _` || |[_   _]/ _` |\ \/ /| |
+| |  >  < | (_| || |  / / | (_| | >  < | |
+|_| /_/\_\ \__,_||_| /___/ \__,_|/_/\_\|_|
+</pre>
+        </div>
+
+        <div class="sys-info">
+            <p>SYS.OP : lxizaxi</p>
+            <p>NODE : NAGOYA, JPN</p>
+        </div>
+
+        <div class="menu-box">
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <span>[1] GitHub</span>
+                    <span class="dots"></span>
+                    <a href="https://github.com/lxizaxi" target="_blank"
+                        rel="noopener noreferrer">https://github.com/lxizaxi</a>
+                </li>
+                <li class="menu-item">
+                    <span>[2] X (Twitter)</span>
+                    <span class="dots"></span>
+                    <a href="https://x.com/lxizaxi" target="_blank" rel="noopener noreferrer">https://x.com/lxizaxi</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="terminal-footer">
+            <div>READY<span class="cursor"></span></div>
+        </div>
+    </main>
+</body>
+
+</html>
