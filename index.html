@@ -4,63 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>suzusoar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'Noto Sans JP', 'sans-serif'],
-                    },
-                    screens: {
-                        'xs': '400px',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body
-    class="min-h-screen bg-gradient-to-tr from-[#eef2f6] via-[#f8fafc] to-[#e0f2fe] text-neutral-800 flex flex-col justify-center items-center p-4 relative">
+<body class="card-bg text-neutral-800 flex flex-col justify-center items-center p-4 relative min-h-screen">
 
     <div
-        class="w-[340px] h-[204px] sm:w-[480px] sm:h-[288px] bg-gradient-to-br from-white via-white to-[#f0f9ff] rounded-[8px] shadow-[0_20px_50px_-15px_rgba(56,189,248,0.18),0_0_1px_rgba(0,0,0,0.08)] border border-sky-100/80 flex p-4 sm:p-6 gap-4 sm:gap-6 justify-between select-none relative overflow-hidden transition-all duration-300">
+        class="card-container border border-sky-100/80 flex p-4 sm:p-6 gap-4 sm:gap-6 justify-between select-none relative overflow-hidden transition-all duration-300">
 
-        <div
-            class="absolute -right-10 -bottom-12 w-64 h-64 sm:w-[320px] sm:h-[320px] pointer-events-none z-0 opacity-85">
+        <div class="cloud-bg pointer-events-none z-0 opacity-85">
             <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
                 <path
                     d="M70 180 C40 180 20 160 20 135 C20 115 32 98 52 92 C50 85 50 78 55 70 C65 55 85 50 100 60 C110 45 130 38 148 45 C168 52 180 70 178 88 C188 95 195 108 192 120 C188 135 175 145 160 148 C148 165 125 180 100 178 Z"
                     fill="#e0f2fe" opacity="0.7" />
-
                 <path
                     d="M100 190 C78 190 62 175 62 155 C62 145 65 138 70 132 C62 125 60 115 65 105 C75 90 92 85 108 92 C118 80 135 75 150 80 C168 85 178 100 176 115 C185 122 190 132 188 142 C185 155 172 165 158 165 C145 180 125 190 100 190 Z"
                     fill="#bae6fd" opacity="0.6" />
-
                 <path
                     d="M125 195 C108 195 95 182 95 165 C95 158 98 152 102 146 C95 140 92 132 98 125 C105 112 120 108 132 115 C140 105 152 100 165 105 C178 108 188 120 186 132 C192 138 196 145 195 152 C192 162 182 170 170 170 C162 182 145 195 125 195 Z"
                     fill="#7dd3fc" opacity="0.25" />
-
                 <circle cx="95" cy="55" r="3" fill="#38bdf8" opacity="0.3" />
                 <circle cx="120" cy="40" r="2" fill="#38bdf8" opacity="0.4" />
                 <circle cx="55" cy="110" r="2.5" fill="#0284c7" opacity="0.2" />
@@ -76,42 +49,31 @@
 
         <div class="flex-grow flex flex-col justify-center gap-3 sm:gap-4 h-full py-0.5 pl-1 sm:pl-2 relative z-10">
 
-            <div class="flex flex-col">
+            <div>
                 <p
                     class="text-[9px] sm:text-xs tracking-[0.25em] text-sky-500 font-bold uppercase leading-none mb-1.5 sm:mb-2">
-                    システムエンジニア
-                </p>
-
-                <h1 class="text-2xl sm:text-3.5xl font-extrabold tracking-[0.1em] text-slate-800 leading-none">
-                    shota
+                    システムエンジニア</p>
+                <h1 class="text-2xl sm:text-3.5xl font-extrabold tracking-[0.1em] text-slate-800 leading-none">shota
                 </h1>
                 <p class="text-[11px] sm:text-[14px] tracking-wide text-sky-600/80 font-medium font-mono mt-1.5">
-                    @suzusoar
-                </p>
+                    @suzusoar</p>
             </div>
 
-            <div class="flex flex-col">
+            <div>
                 <p
                     class="font-extrabold text-[11px] sm:text-[14px] text-slate-700 tracking-wider mb-2 sm:mb-2.5 leading-none">
-                    SNS
-                </p>
-
+                    SNS</p>
                 <div class="flex flex-col gap-1.5 sm:gap-2">
-                    <a href="https://github.com/suzusoar" target="_blank"
-                        class="flex items-center gap-2 text-[9px] sm:text-[11px] text-slate-600 font-mono leading-none hover:text-sky-600 transition-colors">
-                        <i class="fa-brands fa-github text-[11px] sm:text-[13px] w-3.5 text-center text-sky-400"></i>
+                    <a href="https://github.com/suzusoar" target="_blank" class="sns-link">
+                        <i class="fa-brands fa-github sns-icon"></i>
                         <span>github.com/suzusoar</span>
                     </a>
-
-                    <a href="https://x.com/suzusoar_" target="_blank"
-                        class="flex items-center gap-2 text-[9px] sm:text-[11px] text-slate-600 font-mono leading-none hover:text-sky-600 transition-colors">
-                        <i class="fa-brands fa-x-twitter text-[11px] sm:text-[13px] w-3.5 text-center text-sky-400"></i>
+                    <a href="https://x.com/suzusoar_" target="_blank" class="sns-link">
+                        <i class="fa-brands fa-x-twitter sns-icon"></i>
                         <span>x.com/suzusoar_</span>
                     </a>
-
-                    <a href="https://suzusoar.github.io"
-                        class="flex items-center gap-2 text-[9px] sm:text-[11px] text-slate-600 font-mono leading-none hover:text-sky-600 transition-colors">
-                        <i class="fa-solid fa-globe text-[11px] sm:text-[13px] w-3.5 text-center text-sky-400"></i>
+                    <a href="https://suzusoar.github.io" class="sns-link">
+                        <i class="fa-solid fa-globe sns-icon"></i>
                         <span>suzusoar.github.io</span>
                     </a>
                 </div>
@@ -121,9 +83,7 @@
 
     </div>
 
-    <p class="text-[10px] text-neutral-400 mt-6 select-none font-mono">
-        © 2026 suzusoar. All rights reserved.
-    </p>
+    <p class="text-[10px] text-neutral-400 mt-6 select-none font-mono">© 2026 suzusoar. All rights reserved.</p>
 </body>
 
 </html>
